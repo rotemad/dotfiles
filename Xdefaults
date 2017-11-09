@@ -1,0 +1,18 @@
+
+URxvt.scrollBar: false
+#URxvt.transparent: true
+URxvt.cursorBlink: true
+URxvt*geometry: 80x39
+
+URxvt.font:       xft:MesloLGS-Regular:size=9.5
+URxvt.boldFont:   xft:MesloLGS-Bold:bold:size=9.5
+URxvt.letterSpace: -1
+
+#! Some font rendering fixings
+Xft.dpi:        96
+Xft.rgba:       rgb
+Xft.autohint:   0
+Xft.antialias:  true
+Xft.hinting:    true
+Xft.hintstyle:  hintnone
+Xft.lcdfilter:  lcddefault
