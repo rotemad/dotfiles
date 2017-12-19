@@ -1,10 +1,11 @@
 set $mod Mod4
 font pango:HelveticaNeue 10
+focus_follows_mouse yes
 
 #i3 gaps
 gaps inner 15
 gaps outer 15
-for_window [class="^.*"] border pixel 0
+for_window [class="^.*"] border pixel 0 
 
 #Windows Control
 bindsym $mod+r mode "resize"
@@ -106,12 +107,13 @@ bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcu
 
 #Lang-change
 exec --no-startup-id setxkbmap us,il -option 'grp:alt_shift_toggle'
-#exec --no-startup-id setxkbmap us,il -option 'grp:alt_space_toggle'
 
 #floating
-for_window [class="Nautilus"] floating enable
-for_window [class="Gedit"] floating enable
-for_window [class="Galculator"] floating enable
+for_window [class=".*"] floating enable
+#for_window [class="Thunar"] floating enable
+#for_window [class="Gedit"] floating enable
+#for_window [class="Galculator"] floating enable
+#bindsym --whole-window button9 floating toggle 
 
 #Audio Controls
 set $sink `pactl list short sinks | grep RUNNING | cut -f1`
@@ -119,7 +121,7 @@ bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume $sink +1
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume $sink -10%
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute $sink toggle
 
-#Brightness
+#Brightness Controls
 bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -20
 bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight +20
 
@@ -142,7 +144,8 @@ bindsym $mod+p exec firefox
 bindsym $mod+Return exec urxvt
 exec --no-startup-id compton -b
 exec_always --no-startup-id ~/.config/polybar/launch.sh
-bindsym $mod+d exec rofi -show drun -font "SanFranciscoDisplay-Medium 12"
+#bindsym $mod+d exec rofi -show drun -show-icons -font "HelveticaNeue 12"
+bindsym $mod+d exec ~/Documents/rofi/rofi_conf.sh
 bindsym $mod+shift+x exec --no-startup-id i3lock-fancy -f Caveat-Bold
 
 #displayMode script
@@ -150,7 +153,7 @@ set $displayMode "Display Mode"
 bindsym $mod+x mode $displayMode
 mode $displayMode {		
    	bindsym h exec "\
-		~/.config/i3/scripts/./hdmi_only.sh"; \
+		~/.config/i3/scripts/./hdmi_only.sh &&  wal -i ~/Walls/pineapple_green.jpeg && razercfg -r 2"; \
 		mode "default"
   	
 	bindsym 2 exec "\
