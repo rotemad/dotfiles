@@ -27,9 +27,6 @@ offset-y = -1%
 ;fixed-center = ture
 
 ;BAR COLOROS
-;Light gray
-;background = #9a000000
-;foreground = #eee
 ;Trenspert
 ;background = #00FFFFFF
 ;foreground = #FFFFFF
@@ -60,7 +57,7 @@ modules-right = backlight volume battery date wlan eth powermenu
 tray-position = right
 tray-padding = 2
 ;tray-transparent = true
-;tray-background = #0063ff
+tray-background = ${xrdb:color0}
 
 ;wm-restack = bspwm
 wm-restack = i3
@@ -83,6 +80,8 @@ label-padding = 2
 type = internal/bspwm
 label-focused = %index%
 label-focused-background = ${colors.background}
+##00FFFFFF
+
 label-focused-underline= ${colors.foreground}
 label-focused-padding = 2
 label-occupied = %index%
@@ -285,16 +284,24 @@ menu-0-0 = Reboot
 menu-0-0-exec = menu-open-1
 menu-0-1 = Power Off
 menu-0-1-exec = menu-open-2
+menu-0-2 = Logoff
+menu-0-2-exec = menu-open-3
 menu-0-0-padding = 3
 menu-0-1-padding = 3
+menu-0-2-padding = 3
 
 menu-1-0 = Reboot?  
-menu-1-0-exec = sudo reboot
+menu-1-0-exec = reboot
 menu-1-0-padding = 3
 
 menu-2-0 = Power Off?  
-menu-2-0-exec = sudo poweroff
+menu-2-0-exec = poweroff
 menu-2-0-padding = 3
+
+
+menu-3-0 = Logoff?  
+menu-3-0-exec = logoff
+menu-3-0-padding = 3
 
 ; NOT IN USE
 ;[settings]
