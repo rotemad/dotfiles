@@ -153,7 +153,7 @@ set $displayMode "Display Mode"
 bindsym $mod+x mode $displayMode
 mode $displayMode {		
    	bindsym h exec "\
-		~/.config/i3/scripts/./hdmi_only.sh &&  wal -i ~/Walls/pineapple_green.jpeg && razercfg -r 2"; \
+		~/.config/i3/scripts/./hdmi_only.sh &&  wal -i ~/Walls/love.jpeg && razercfg -r 2"; \
 		mode "default"
   	
 	bindsym 2 exec "\
