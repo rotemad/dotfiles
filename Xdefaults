@@ -2,7 +2,7 @@
 URxvt.scrollBar: false
 #URxvt.transparent: true
 URxvt.cursorBlink: true
-URxvt*geometry: 80x39
+URxvt*geometry: 82x40
 
 URxvt.font:       xft:MesloLGS-Regular:size=9.5
 URxvt.boldFont:   xft:MesloLGS-Bold:bold:size=9.5
