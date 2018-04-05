@@ -1,5 +1,5 @@
 set $mod Mod4
-font pango:HelveticaNeue 10
+font pango:HelveticaNeue 10 
 focus_follows_mouse yes
 
 #i3 gaps
@@ -109,7 +109,7 @@ bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcu
 exec --no-startup-id setxkbmap us,il -option 'grp:alt_shift_toggle'
 
 #floating
-for_window [class=".*"] floating enable
+#for_window [class=".*"] floating enable
 #for_window [class="Thunar"] floating enable
 #for_window [class="Gedit"] floating enable
 #for_window [class="Galculator"] floating enable
@@ -122,8 +122,11 @@ bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume $sink -1
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute $sink toggle
 
 #Brightness Controls
-bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -20
-bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight +20
+bindsym XF86MonBrightnessDown exec --no-startup-id light -U 10
+bindsym XF86MonBrightnessUp exec --no-startup-id light -A 10
+
+#Enable touchpad tap to click
+exec xinput set-prop 12 277 1
 
 # Wal color script
 exec wal -i "$(< "${HOME}/.cache/wal/wal")"
@@ -145,23 +148,19 @@ bindsym $mod+Return exec urxvt
 exec --no-startup-id compton -b
 exec_always --no-startup-id ~/.config/polybar/launch.sh
 #bindsym $mod+d exec rofi -show drun -show-icons -font "HelveticaNeue 12"
-bindsym $mod+d exec ~/Documents/rofi/rofi_conf.sh
-bindsym $mod+shift+x exec --no-startup-id i3lock-fancy -f Caveat-Bold
+bindsym $mod+d exec ~/.config/rofi/rofi_conf.sh
+bindsym $mod+shift+x exec --no-startup-id i3lock
 
 #displayMode script
 set $displayMode "Display Mode"
 bindsym $mod+x mode $displayMode
 mode $displayMode {		
-   	bindsym h exec "\
-		~/.config/i3/scripts/./hdmi_only.sh &&  wal -i ~/Walls/love.jpeg && razercfg -r 2"; \
+   	bindsym 3 exec "\
+		~/Scripts/3_screens.sh &&  wal -R"; \
 		mode "default"
   	
-	bindsym 2 exec "\
-	       ~/.config/i3/scripts/./2_screens.sh"; \
-	       mode "default"
-
 	bindsym 1 exec "\
-	       ~/.config/i3/scripts/./1_screen.sh"; \
+	       ~/Scripts/1_screen.sh && wal -R"; \
 	       mode "default"
 
 bindsym Return mode "default"
