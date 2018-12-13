@@ -110,10 +110,9 @@ exec --no-startup-id setxkbmap us,il -option 'grp:alt_shift_toggle'
 
 #floating
 #for_window [class=".*"] floating enable
-#for_window [class="Thunar"] floating enable
-#for_window [class="Gedit"] floating enable
-#for_window [class="Galculator"] floating enable
-#bindsym --whole-window button9 floating toggle 
+
+#lockscreen
+bindsym $mod4+Shift_L+L exec dm-tool lock
 
 #Audio Controls
 set $sink `pactl list short sinks | grep RUNNING | cut -f1`
@@ -122,45 +121,58 @@ bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume $sink -1
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute $sink toggle
 
 #Brightness Controls
-bindsym XF86MonBrightnessDown exec --no-startup-id light -U 10
-bindsym XF86MonBrightnessUp exec --no-startup-id light -A 10
+bindsym XF86MonBrightnessDown exec xbacklight -dec 10
+bindsym XF86MonBrightnessUp exec xbacklight -inc 10
 
 #Enable touchpad tap to click
-exec xinput set-prop 12 277 1
+exec_always xinput set-prop 13 277 1
+exec_always xinput set-prop 13 297 0.5
+exec_always xinput set-prop 13 285 
+exec_always xinput --set-prop 21 285 1 
+
 
 # Wal color script
-exec wal -i "$(< "${HOME}/.cache/wal/wal")"
+#exec wal -i "$(< "${HOME}/.cache/wal/wal")"
+exec wal -R
 
-#pywal
+# Set colors from Xresources
+# Change 'color7' and 'color2' to whatever colors you want i3 to use 
+# from the generated scheme.
+# NOTE: The '#f0f0f0' in the lines below is the color i3 will use if
+# it fails to get colors from Xresources.
 set_from_resource $fg i3wm.color7 #f0f0f0
 set_from_resource $bg i3wm.color2 #f0f0f0
+
 # class                 border  backgr. text indicator child_border
 client.focused          $bg     $bg     $fg  $bg       $bg
 client.focused_inactive $bg     $bg     $fg  $bg       $bg
 client.unfocused        $bg     $bg     $fg  $bg       $bg
 client.urgent           $bg     $bg     $fg  $bg       $bg
 client.placeholder      $bg     $bg     $fg  $bg       $bg
+
 client.background       $bg
+
+# PROTIP: You can also dynamically set dmenu's colors this way:
+#bindsym $mod+d exec dmenu_run -nb "$fg" -nf "$bg" -sb "$bg" -sf "$fg"
 
 #Apps shortcuts
 bindsym $mod+p exec firefox
-bindsym $mod+Return exec urxvt
-exec --no-startup-id compton -b
-exec_always --no-startup-id ~/.config/polybar/launch.sh
-#bindsym $mod+d exec rofi -show drun -show-icons -font "HelveticaNeue 12"
-bindsym $mod+d exec ~/.config/rofi/rofi_conf.sh
-bindsym $mod+shift+x exec --no-startup-id i3lock
+bindsym $mod+Return exec terminator 
+#exec --no-startup-id compton -b
+#exec_always --no-startup-id ~/.config/polybar/launch.sh
+bindsym $mod+d exec rofi -show drun -show-icons -font "HelveticaNeue 12"
+#bindsym $mod+d exec ~/.config/rofi/rofi_conf.sh
 
 #displayMode script
 set $displayMode "Display Mode"
 bindsym $mod+x mode $displayMode
 mode $displayMode {		
-   	bindsym 3 exec "\
-		~/Scripts/3_screens.sh &&  wal -R"; \
+ 	bindsym 1 exec "\
+		xrandr --output eDP1 --auto &&  wal -R"; \
 		mode "default"
-  	
-	bindsym 1 exec "\
-	       ~/Scripts/1_screen.sh && wal -R"; \
+	
+	bindsym 2 exec "\
+	       xrandr --output eDP1 --auto  --output DP2 --auto --scale 2x2 --right-of eDP1 && wal -R"; \
 	       mode "default"
 
 bindsym Return mode "default"
