@@ -1,20 +1,29 @@
+;=====================================================
+
 [colors]
 background = ${xrdb:color0}
 foreground = ${xrdb:color2}
 highlight = ${xrdb:color2}
 alert = ${xrdb:color2} 
 
+;=====================================================
+
 [bar/example]
 monitor = ${env:MONITOR}
-width = 100%
-height = 21
-offset-x = 0%
+width = 35%
+height = 50
+dpi = 192 
+offset-x = 30%
 offset-y = -1%
+bottom = true
+override-redirect = true
+fixed-center - true
+
+background = ${xrdb:color0:#222}
+foreground = ${xrdb:color2:#222}
 
 ;background = #00FFFFFF
 ;foreground = #FFFFFF
-background = ${xrdb:color0:#222}
-foreground = ${xrdb:color2:#222}
 
 line-size = 2
 border-size = 2
@@ -32,6 +41,8 @@ tray-background = ${xrdb:color0}
 
 scroll-up = i3wm-wsnext
 scroll-down = i3wm-wsprev
+
+;=====================================================
 
 [module/i3]
 type = internal/i3
@@ -60,11 +71,15 @@ label-urgent = %index%
 label-urgent-background = ${colors.alert}
 label-urgent-padding = 2
 
+;=====================================================
+
 [module/backlight]
 type = internal/backlight
 card = intel_backlight
 label = %percentage%% 
-label-padding = 2
+label-padding = 1
+
+;=====================================================
 
 [module/wlan]
 type = internal/network
@@ -72,18 +87,22 @@ interface = wlp2s0
 interval = 5
 label-connected = %essid% 
 
+;=====================================================
+
 [module/eth]
 type = internal/network
 interface = eno1
 interval = 5 
 label-connected =  
-label-connected-padding = 2
+label-connected-padding = 1
 [module/date]
 type = internal/date
 interval = 60
 date = %a %d %b
 time = %H:%M 
 label =  %date%  %time%
+
+;=====================================================
 
 [module/volume]
 type = internal/volume
@@ -92,12 +111,14 @@ format-muted = <label-muted>
 label-volume = %percentage%%
 label-muted =   muted
 label-muted-foreground = #aaa
-format-volume-padding = 2
-format-muted-padding = 2
+format-volume-padding = 1
+format-muted-padding = 1
 ramp-volume-0 = 
 ramp-volume-1 = 
 ramp-volume-2 = 
 ramp-headphones-0 = 
+
+;=====================================================
 
 [module/battery]
 type = internal/battery
@@ -111,8 +132,8 @@ format-full = <ramp-capacity> <label-full>
 label-charging = %percentage%%
 label-discharging = %percentage%%
 label-full = %percentage%%
-format-charging-padding = 2
-format-discharging-padding = 2
+format-charging-padding = 1
+format-discharging-padding = 1
 format-full-padding = 2
 ramp-capacity-0 = 
 ramp-capacity-1 = 
@@ -125,6 +146,8 @@ animation-charging-2 = 
 animation-charging-3 = 
 animation-charging-4 = 
 animation-charging-framerate = 750
+
+;=====================================================
 
 [module/powermenu]
 type = custom/menu
@@ -150,3 +173,5 @@ menu-2-0-padding = 1
 menu-3-0 = Logoff?  
 menu-3-0-exec = logoff
 menu-3-0-padding = 1
+
+;=====================================================
