@@ -1,6 +1,12 @@
 !====== URxvt
 !URxvt.perl-ext-common: font-size,tabbed
-
+!URxvt.scrollBar: false
+#URxvt.transparent: true
+!URxvt.cursorBlink: true
+!URxvt*geometry: 82x40
+!URxvt.font:       xft:MesloLGS-Regular:size=9.5
+!URxvt.boldFont:   xft:MesloLGS-Bold:bold:size=9.5
+!URxvt.letterSpace: -1
 
 !====== HiDPI
 Xft.dpi: 192 

@@ -5,7 +5,9 @@ focus_follows_mouse yes
 #i3 gaps
 gaps inner 15
 gaps outer 15
-for_window [class="^.*"] border pixel 0 
+#smart_gaps on
+#smart_borders on
+for_window [class="^.*"] border pixel 1 
 
 #Windows Control
 bindsym $mod+r mode "resize"
@@ -112,7 +114,7 @@ exec --no-startup-id setxkbmap us,il -option 'grp:alt_shift_toggle'
 #for_window [class=".*"] floating enable
 
 #lockscreen
-bindsym $mod4+Shift_L+L exec dm-tool lock
+#bindsym $mod4+Shift_L+L exec dm-tool lock
 
 #Audio Controls
 set $sink `pactl list short sinks | grep RUNNING | cut -f1`
@@ -127,13 +129,15 @@ bindsym XF86MonBrightnessUp exec xbacklight -inc 10
 #Enable touchpad tap to click
 exec_always xinput set-prop 13 277 1
 exec_always xinput set-prop 13 297 0.5
-exec_always xinput set-prop 13 285 
-exec_always xinput --set-prop 21 285 1 
+exec_always xinput set-prop 13 285 1
+exec_always xinput set-prop 15 285 1 
+exec_always xinput set-prop 15 297 0.3
 
+#exec_always killall imwheel && imwheel -b45
 
 # Wal color script
-#exec wal -i "$(< "${HOME}/.cache/wal/wal")"
-exec wal -R
+exec wal -i "$(< "${HOME}/.cache/wal/wal")"
+#exec wal -R
 
 # Set colors from Xresources
 # Change 'color7' and 'color2' to whatever colors you want i3 to use 
@@ -159,8 +163,9 @@ client.background       $bg
 bindsym $mod+p exec firefox
 bindsym $mod+Return exec terminator 
 #exec --no-startup-id compton -b
-#exec_always --no-startup-id ~/.config/polybar/launch.sh
-bindsym $mod+d exec rofi -show drun -show-icons -font "HelveticaNeue 12"
+exec_always --no-startup-id ~/.config/polybar/launch.sh
+#bindsym $mod+d exec rofi -show drun -show-icons -font "HelveticaNeue 12"
+bindsym $mod+d exec rofi -show
 #bindsym $mod+d exec ~/.config/rofi/rofi_conf.sh
 
 #displayMode script
@@ -172,7 +177,7 @@ mode $displayMode {
 		mode "default"
 	
 	bindsym 2 exec "\
-	       xrandr --output eDP1 --auto  --output DP2 --auto --scale 2x2 --right-of eDP1 && wal -R"; \
+	       xrandr --output eDP1 --auto --output DP1 --auto --scale 2x2 --right-of eDP1 && wal -R"; \
 	       mode "default"
 
 bindsym Return mode "default"
