@@ -1,4 +1,8 @@
+!====== URxvt
 !URxvt.perl-ext-common: font-size,tabbed
+
+
+!====== HiDPI
 Xft.dpi: 192 
 Xft.autohint: 0
 Xft.lcdfilter:  lcddefault
@@ -7,7 +11,7 @@ Xft.hinting: 1
 Xft.antialias: 1
 Xft.rgba: rgb
 
-! rofi
+!====== Rofi
 rofi.dpi: 192 
 rofi.font: HelveticaNeue 28
 rofi.modi: drun,window
